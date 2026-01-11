@@ -8,7 +8,7 @@ The infrastructure bridges a secure Management environment (Bastion) with a Prod
 ---
 
 ## 🏗️ Architecture Diagram
-#Click the diagram below to watch the DEMO VIDEO.....
+Click the diagram below to watch the DEMO VIDEO.....
 
 [![AWS Architecture](images/diagram.png)](https://youtu.be/Q4YCyA1KFXE)
 
