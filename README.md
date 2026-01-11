@@ -77,27 +77,20 @@ echo "<?php echo \"<h1>App Server: \" . gethostname() . \"</h1>\"; ?>" > /var/ww
 🔧 Troubleshooting Log
 During the deployment, several challenges were resolved:
 
-Windows SSH Agent Error (1058):
-
+Windows SSH Agent Error (1058):-
 Issue: SSH Agent service was disabled on local Windows machine.
-
 Fix: Powershell command Set-Service ssh-agent -StartupType Manual and Start-Service.
 
-Cross-VPC Database Connection:
-
+Cross-VPC Database Connection:-
 Issue: RDS Security Group rejected Bastion Security Group ID.
-
 Fix: Configured Inbound Rules to allow traffic from the Management VPC CIDR Range (10.0.0.0/16) instead of SG ID.
 
-Launch Template Version Mismatch:
-
+Launch Template Version Mismatch:-
 Issue: ASG was launching instances with old User Data.
-
 Fix: Updated ASG configuration to use Launch Template Version: Latest and performed Instance Refresh.
 
 🚀 Future Scope
 Implement Application Load Balancer (ALB) with HTTPS/SSL.
-
 Migrate database credentials to AWS Secrets Manager.
 
 Set up CloudWatch Alarms for CPU & Memory utilization.
