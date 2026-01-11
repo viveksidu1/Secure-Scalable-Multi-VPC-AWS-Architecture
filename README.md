@@ -45,8 +45,9 @@ Database access is restricted based on the user's role/location. The `postgres` 
 
 
 ### 🎥 Project Implementation Demo
-Click the image below to watch the COMPLETE WALKTHROUGH:
-[![Watch the video](images/diagram.png)](https://youtu.be/TUMHARA_VIDEO_LINK)
+Click the image below to watch the COMPLETE WALKTHROUGH.....
+
+[![Watch the video](images/diagram.png)](https://youtu.be/k1VrlAx0SBk)
 
 
 **SQL Implementation:**
@@ -103,3 +104,9 @@ Migrate database credentials to AWS Secrets Manager.
 Set up CloudWatch Alarms for CPU & Memory utilization.
 
 
+DEMO VIDEO :--
+https://youtu.be/Q4YCyA1KFXE
+
+
+WALKTHROUGH VIDEO :--
+https://youtu.be/k1VrlAx0SBk
