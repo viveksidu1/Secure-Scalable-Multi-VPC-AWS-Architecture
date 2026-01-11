@@ -41,6 +41,12 @@ Database access is restricted based on the user's role/location. The `postgres` 
 | **Application** | `admin` | **Read & Write** | Used by PHP App on Private Server |
 | **Monitoring** | `monitor` | **Read Only** | Used by Engineers on Bastion Host |
 
+
+### 🎥 Project Implementation Demo
+Click the image below to watch the complete walkthrough:
+[![Watch the video](images/diagram.png)](https://youtu.be/TUMHARA_VIDEO_LINK)
+
+
 **SQL Implementation:**
 ```sql
 -- Read-Only User for Bastion
@@ -92,5 +98,6 @@ Fix: Updated ASG configuration to use Launch Template Version: Latest and perfor
 🚀 Future Scope
 Implement Application Load Balancer (ALB) with HTTPS/SSL.
 Migrate database credentials to AWS Secrets Manager.
-
 Set up CloudWatch Alarms for CPU & Memory utilization.
+
+
