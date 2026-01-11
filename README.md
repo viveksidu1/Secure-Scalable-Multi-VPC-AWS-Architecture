@@ -8,11 +8,10 @@ The infrastructure bridges a secure Management environment (Bastion) with a Prod
 ---
 
 ## 🏗️ Architecture Diagram
-![Architecture Diagram]
+## 🚀 Architecture & Demo
+Click the diagram below to watch the implementation video:
 
-<a href="https://youtu.be/Q4YCyA1KFXE" target="_blank">
- <img src="https://img.youtube.com/vi/Q4YCyA1KFXE/diagram.png" alt="Architecture Diagram & Click the Picture Below to Watch the DEMO VIDEO" width="600" border="10" />
-</a>
+[![AWS Architecture](images/diagram.png)](https://youtu.be/Q4YCyA1KFXE)
 
 ### Key Components
 * **VPC Design:** Dual VPC setup (Management VPC & Production VPC).
