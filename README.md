@@ -8,7 +8,7 @@ The infrastructure bridges a secure Management environment (Bastion) with a Prod
 ---
 
 ## 🏗️ Architecture Diagram
-![Architecture Diagram & Click the Picture Below to Watch the Demo Video][![Watch the video](images/diagram.png)](https://youtu.be/TUMHARA_VIDEO_LINK)
+![Architecture Diagram & Click the Picture Below to Watch the DEMO VIDEO][![Watch the video](images/diagram.png)](https://youtu.be/TUMHARA_VIDEO_LINK)
 
 ### Key Components
 * **VPC Design:** Dual VPC setup (Management VPC & Production VPC).
@@ -43,7 +43,7 @@ Database access is restricted based on the user's role/location. The `postgres` 
 
 
 ### 🎥 Project Implementation Demo
-Click the image below to watch the complete walkthrough:
+Click the image below to watch the COMPLETE WALKTHROUGH:
 [![Watch the video](images/diagram.png)](https://youtu.be/TUMHARA_VIDEO_LINK)
 
 
