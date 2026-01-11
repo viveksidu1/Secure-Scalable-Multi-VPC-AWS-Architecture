@@ -105,8 +105,16 @@ Set up CloudWatch Alarms for CPU & Memory utilization.
 
 
 DEMO VIDEO :--
-https://youtu.be/Q4YCyA1KFXE
+<a href="https://youtu.be/Q4YCyA1KFXE" target="_blank">
+ <img src="https://img.youtube.com/vi/Q4YCyA1KFXE/maxresdefault.jpg" alt="Watch Video" width="600" border="10" />
+</a>
 
 
 WALKTHROUGH VIDEO :--
-https://youtu.be/k1VrlAx0SBk
+<a href="https://youtu.be/k1VrlAx0SBk" target="_blank">
+ <img src="https://img.youtube.com/vi/k1VrlAx0SBk/maxresdefault.jpg" alt="Watch Video" width="600" border="10" />
+</a>
+
+
+
+
