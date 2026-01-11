@@ -105,6 +105,8 @@ Migrate database credentials to AWS Secrets Manager.
 Set up CloudWatch Alarms for CPU & Memory utilization.
 
 
+
+
 ### 🎥 Live DEMO VIDEO
 Click below to watch the video:
 https://youtu.be/Q4YCyA1KFXE
@@ -113,9 +115,5 @@ https://youtu.be/Q4YCyA1KFXE
 ### 🎥 Live WALKTHROUGH VIDEO
 Click below to watch the video:
 https://youtu.be/k1VrlAx0SBk
-
-
-
-
 
 
