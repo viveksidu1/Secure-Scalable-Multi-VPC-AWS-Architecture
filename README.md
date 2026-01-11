@@ -8,7 +8,7 @@ The infrastructure bridges a secure Management environment (Bastion) with a Prod
 ---
 
 ## 🏗️ Architecture Diagram
-![Architecture Diagram & Click the Picture Below to Watch the DEMO VIDEO][![Watch the video](images/diagram.png)](https://youtu.be/TUMHARA_VIDEO_LINK)
+![Architecture Diagram & Click the Picture Below to Watch the DEMO VIDEO][![Watch the video](images/diagram.png)]([https://youtu.be/TUMHARA_VIDEO_LINK](https://youtu.be/Q4YCyA1KFXE))
 
 ### Key Components
 * **VPC Design:** Dual VPC setup (Management VPC & Production VPC).
