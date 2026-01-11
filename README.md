@@ -8,7 +8,8 @@ The infrastructure bridges a secure Management environment (Bastion) with a Prod
 ---
 
 ## 🏗️ Architecture Diagram
-![Architecture Diagram & Click the Picture Below to Watch the DEMO VIDEO][![Watch the video](images/diagram.png)]([https://youtu.be/https://youtu.be/Q4YCyA1KFXE])]
+![Architecture Diagram]
+
 <a href="https://youtu.be/Q4YCyA1KFXE" target="_blank">
  <img src="https://img.youtube.com/vi/Q4YCyA1KFXE/maxresdefault.jpg" alt="Architecture Diagram & Click the Picture Below to Watch the DEMO VIDEO" width="600" border="10" />
 </a>
