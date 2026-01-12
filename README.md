@@ -28,13 +28,13 @@ Objective: Create a secure, immutable storage location for network logs.
 5.	Block Public Access: Ensure "Block all public access" is Checkmarked.
 6.	Bucket Versioning: Select Enable (Required for Object Lock).
 7.	Object Lock: Select Enable.
-o	Note: This prevents logs from being deleted by hackers or accidental clicks.
+  -> Note: This prevents logs from being deleted by hackers or accidental clicks.
 8.	Click Create Bucket.
 9.	Set Retention: Open the bucket > Properties > Object Lock > Edit.
-o	Default retention: Enable.
-o	Mode: Compliance.
-o	Period: no. of Days as you like.
-o	Click Save changes.
+  -> Default retention: Enable.
+  -> Mode: Compliance.
+  -> Period: no. of Days as you like.
+  -> Click Save changes.
 ________________________________________
 Phase 2: Identity & Access Management (IAM Roles) 🆔
 Objective: Give our servers permission to talk to AWS services without using secret keys.
@@ -42,10 +42,10 @@ Objective: Give our servers permission to talk to AWS services without using sec
 2.	Trusted Entity Type: Select AWS Service.
 3.	Service or Use Case: Select EC2.
 4.	Add Permissions: Search for and select the following policies:
-o	AmazonSSMManagedInstanceCore (Allows patching & session manager access).
-o	AmazonS3ReadOnlyAccess (Allows accessing S3 buckets).
-o	AmazonEC2ReadOnlyAccess
-o	AmazonElasticFileSystemClientReadWriteAccess
+  -> AmazonSSMManagedInstanceCore (Allows patching & session manager access).
+  -> AmazonS3ReadOnlyAccess (Allows accessing S3 buckets).
+  -> AmazonEC2ReadOnlyAccess
+  -> AmazonElasticFileSystemClientReadWriteAccess
 5.	Click Next.
 6.	Role Name: SSM-Role-Admin.
 7.	Click Create role.
@@ -57,64 +57,47 @@ Objective: Build two separate networks—one for Management and one for Producti
 2.	Name: Mgmt-VPC.
 3.	IPv4 CIDR: 10.0.0.0/16.
 4.	Create Subnet:
-  Name: Mgmt-Public-Subnet.
-  AZ: ap-south-1a.
-  CIDR: 10.0.1.0/24.
+  -> Name: Mgmt-Public-Subnet.
+  -> AZ: ap-south-1a.
+  -> CIDR: 10.0.1.0/24.
 5.	Internet Gateway (IGW):
-  Create IGW named Mgmt-IGW.
-  Select IGW > Actions > Attach to VPC > Select Mgmt-VPC.
+  -> Create IGW named Mgmt-IGW.
+  -> Select IGW > Actions > Attach to VPC > Select Mgmt-VPC.
 6.	Route Table:
-  Find the Main Route Table for Mgmt-VPC. Name it Mgmt-Public-RT.
-  Edit Routes: Add 0.0.0.0/0 -> Target: Mgmt-IGW.
-  Subnet Associations: Associate Mgmt-Public-Subnet.
+  -> Find the Main Route Table for Mgmt-VPC. Name it Mgmt-Public-RT.
+  -> Edit Routes: Add 0.0.0.0/0 -> Target: Mgmt-IGW.
+  -> Subnet Associations: Associate Mgmt-Public-Subnet.
 
 
 
 3.2 Create Production VPC (For App & DB)
 1.	Create VPC: Name Prod-VPC with CIDR 10.1.0.0/16.
 2.	Create Subnets (Total 4):
-o	Public (For Load Balancer & NAT):
-	Prod-Pub-Sub-1 (10.1.1.0/24)
-	Prod-Pub-Sub-2 (10.1.2.0/24)
-o	Private (For Database):
-	Prod-Pvt-Sub-1 (10.1.10.0/24)
-	Prod-Pvt-Sub-2 (10.1.20.0/24)
+  -> Public (For Load Balancer & NAT): Prod-Pub-Sub-1 (10.1.1.0/24) & Prod-Pub-Sub-2 (10.1.2.0/24)
+  -> Private (For Database): Prod-Pvt-Sub-1 (10.1.10.0/24) & Prod-Pvt-Sub-2 (10.1.20.0/24)
 3.	Internet Gateway: Create Prod-IGW and attach to Prod-VPC.
 4.	NAT Gateway (For Private Internet):
-o	Go to NAT Gateways > Create Prod-NAT-1 & Prod-NAT-2
-o	Subnet: Prod-Pub-Sub-1 & Prod-Pub-Sub-2.
-o	Connectivity: Public.
-o	Elastic IP: Click "Allocate Elastic IP".
-o	Click Create.
+  -> Go to NAT Gateways > Create Prod-NAT-1 & Prod-NAT-2
+  -> Subnet: Prod-Pub-Sub-1 & Prod-Pub-Sub-2.
+  -> Connectivity: Public.
+  -> Elastic IP: Click "Allocate Elastic IP".
+  -> Click Create.
 5.	Route Tables (Prod):
-o	Public RT: Create Mgmt-Public-RT. Add route 0.0.0.0/0 -> Mgmt-IGW & Prod-Public-RT. Add route 0.0.0.0/0 -> Prod-IGW
-o	 Associate both Public Subnets.
-o	Private RT: Create Prod-Private-RT-1. Add route 0.0.0.0/0 -> NAT Gateway & Prod-Private-RT-2. Add route 0.0.0.0/0 -> NAT Gateway. Associate all 2 Private Subnets (App & DB).
+  -> Public RT: Create Mgmt-Public-RT. Add route 0.0.0.0/0 -> Mgmt-IGW & Prod-Public-RT. Add route 0.0.0.0/0 -> Prod-IGW (Associate both Public Subnets).
+  -> Private RT: Create Prod-Private-RT-1 -> Add route 0.0.0.0/0 -> NAT Gateway & Prod-Private-RT-2 -> Add route 0.0.0.0/0 -> NAT Gateway -> Associate all 2 Private Subnets (App & DB).
 ________________________________________
 Phase 4: Connectivity (Transit Gateway) 🌉
 Objective: Connect the two isolated VPCs securely.
 1.	Create Transit Gateway: Go to VPC Dashboard > Transit Gateways > Create.
-o	Name: Secure-Hub-TGW.
-o	Auto-accept shared attachments: Enable.
+  -> Name: Secure-Hub-TGW.
+  -> Auto-accept shared attachments: Enable.
 2.	Create Attachments:
-o	Attachment 1: (Management Side)
-	TGW ID: Secure-Hub-TGW.
-	VPC ID: Mgmt-VPC.
-	Subnet: Mgmt-Public-Subnet.
-o	Attachment 2: (Production Side)
-	TGW ID: Secure-Hub-TGW.
-	VPC ID: Prod-VPC.
-	Subnets: Prod-Pvt-Sub-1 & Prod-Pvt-Sub-2.
+  -> Attachment 1: (Management Side) > TGW ID: Secure-Hub-TGW > VPC ID: Mgmt-VPC > Subnet: Mgmt-Public-Subnet
+  -> Attachment 2: (Production Side) > TGW ID: Secure-Hub-TGW > VPC ID: Prod-VPC > Subnets: Prod-Pvt-Sub-1 & Prod-Pvt-Sub-2.
 3.	Update Route Tables (Crucial Step):
-o	Go to Mgmt-Public-RT > Routes > Add Route:
-	Destination: 10.1.0.0/16 (Prod CIDR).
-	Target: Transit Gateway.
-o	Go to Prod-Private-RT-1 > Routes > Add Route:
-	Destination: 10.0.0.0/16 (Mgmt CIDR).
-	Target: Transit Gateway.
-o	Go to Prod-Private-RT-2 > Routes > Add Route:
-	Destination: 10.0.0.0/16 (Mgmt CIDR).
-	Target: Transit Gateway.
+  -> Go to Mgmt-Public-RT > Routes > Add Route: > Destination: 10.1.0.0/16 (Prod CIDR) > Target: Transit Gateway.
+  -> Go to Prod-Private-RT-1 > Routes > Add Route: > Destination: 10.0.0.0/16 (Mgmt CIDR) > Target: Transit Gateway.
+  -> Go to Prod-Private-RT-2 > Routes > Add Route: > Destination: 10.0.0.0/16 (Mgmt CIDR) > Target: Transit Gateway.
 
 VPC Flow Logs Setup
 1.	Select Prod-VPC.
@@ -148,28 +131,27 @@ ________________________________________
 Phase 6: Database & Storage Layer 💾
 6.1 RDS PostgreSQL Setup
 1.	Subnet Group: RDS > Subnet groups > Create.
-o	VPC: Prod-VPC.
-o	Name: Prod-DB-Subnet-group
-o	Subnets: Prod-Pvt-Sub-1 & Prod-Pvt-Sub-2
+  -> VPC: Prod-VPC.
+  -> Name: Prod-DB-Subnet-group
+  -> Subnets: Prod-Pvt-Sub-1 & Prod-Pvt-Sub-2
 2.	Create Database:
-o	Standard Create > PostgreSQL.
-o	Template: Free Tier or Production.
-o	Identifier: prod- paymentapp-db.
-o	Master Username: postgres. Password: 12345678.
-o	Connectivity:
-	VPC: Prod-VPC.
-	Public Access: No.
-o	Security Group: Prod-DB-Subnet-group
-o	Additional Configuration:
-	Intial Database Name: paymentapp
+  -> Standard Create > PostgreSQL.
+  -> Template: Free Tier or Production.
+  -> Identifier: prod- paymentapp-db.
+  -> Master Username: postgres. Password: 12345678.
+  -> Connectivity: VPC: Prod-VPC & Public Access: No.
+  -> Security Group: Prod-DB-Subnet-group
+  -> Additional Configuration: Intial Database Name: paymentapp
 3.	Click Create. Note down the Endpoint URL once active.
+
+   
 6.2 EFS Shared Storage
 1.	Go to EFS > Create file system.
 2.	Name: Prod-Shared-Storage.
 3.	VPC: Prod-VPC.
 4.	Customize:
-o	Mount Targets: Ensure targets are in Prod-Pvt-Sub-1 and Prod-Pvt-Sub-2.
-o	Security Group: Detach default, Attach Prod-EFS-SG.
+  -> Mount Targets: Ensure targets are in Prod-Pvt-Sub-1 and Prod-Pvt-Sub-2.
+  -> Security Group: Detach default, Attach Prod-EFS-SG.
 5.	Click Create. Note down the File System ID (fs-xxxx).
 ________________________________________
 
@@ -186,8 +168,8 @@ Phase 7: Compute & Automation ⚙️
 5.	Key Pair: Projectkey.
 6.	Network Settings: Select Security Group Prod-App-SG.
 7.	Advanced Details:
-o	IAM Instance Profile: SSM-Role-Admin.
-o	User Data: (Copy-Paste the script below).
+  -> IAM Instance Profile: SSM-Role-Admin.
+  -> User Data: (Copy-Paste the script below).
 Bash
 #!/bin/bash
 sudo yum update -y
@@ -212,17 +194,18 @@ sudo sh -c 'echo "<?php echo \"<h1>Welcome to (PRIVATE EC2)which is inside(PRIVA
 
 7.2 Create Target Group & Load Balancer
 1.	Target Group: EC2 > Target Groups > Create.
-o	Target type: Instances.
-o	Protocol: HTTP (80).
-o	VPC: Prod-VPC.
-o	Health Check: /
-o	Register Targets: Select all Instances
+  -> Target type: Instances.
+  -> Protocol: HTTP (80).
+  -> VPC: Prod-VPC.
+  -> Health Check: /
+  -> Register Targets: Select all Instances
 2.	Load Balancer (ALB): EC2 > Load Balancers > Create ALB.
-o	Name: Prod-Public-ALB
-o	Scheme: Internet-facing.
-o	Network: Prod-VPC -> Prod-Pub-Sub-1 & Prod-Pub-Sub-1.
-o	Security Group: Prod-ALB-SG.
-o	Listeners: HTTP (80) -> Forward to Target Group created above (Prod-App-TG).
+  -> Name: Prod-Public-ALB
+  -> Scheme: Internet-facing.
+  -> Network: Prod-VPC -> Prod-Pub-Sub-1 & Prod-Pub-Sub-1.
+  -> Security Group: Prod-ALB-SG.
+  -> Listeners: HTTP (80) -> Forward to Target Group created above (Prod-App-TG).
+  	
 7.3 Create Auto Scaling Group (ASG)
 1.	ASG Name: Prod-ASG.
 2.	Template: Select Prod-App-Template.
