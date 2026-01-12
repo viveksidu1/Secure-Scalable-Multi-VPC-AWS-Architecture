@@ -57,16 +57,16 @@ Objective: Build two separate networks—one for Management and one for Producti
 2.	Name: Mgmt-VPC.
 3.	IPv4 CIDR: 10.0.0.0/16.
 4.	Create Subnet:
-o	Name: Mgmt-Public-Subnet.
-o	AZ: ap-south-1a.
-o	CIDR: 10.0.1.0/24.
+  Name: Mgmt-Public-Subnet.
+  AZ: ap-south-1a.
+  CIDR: 10.0.1.0/24.
 5.	Internet Gateway (IGW):
-o	Create IGW named Mgmt-IGW.
-o	Select IGW > Actions > Attach to VPC > Select Mgmt-VPC.
+  Create IGW named Mgmt-IGW.
+  Select IGW > Actions > Attach to VPC > Select Mgmt-VPC.
 6.	Route Table:
-o	Find the Main Route Table for Mgmt-VPC. Name it Mgmt-Public-RT.
-o	Edit Routes: Add 0.0.0.0/0 -> Target: Mgmt-IGW.
-o	Subnet Associations: Associate Mgmt-Public-Subnet.
+  Find the Main Route Table for Mgmt-VPC. Name it Mgmt-Public-RT.
+  Edit Routes: Add 0.0.0.0/0 -> Target: Mgmt-IGW.
+  Subnet Associations: Associate Mgmt-Public-Subnet.
 
 
 
