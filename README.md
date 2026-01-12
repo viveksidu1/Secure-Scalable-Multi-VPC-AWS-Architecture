@@ -110,23 +110,23 @@ ________________________________________
 Phase 5: Security Groups (The Firewall) 🛡️
 Objective: Define strict inbound/outbound rules.
 Create the following Security Groups (SGs):
-SG Name	VPC	Inbound Rules	Description
-Mgmt-Bastion-SG	Mgmt-VPC	SSH (22): My IP (Your Public IP)	Only allows you to enter.
-Prod-ALB-SG	Prod-VPC	HTTP (80): 0.0.0.0/0 (Anywhere)
+-> SG Name	VPC	Inbound Rules	Description
+-> Mgmt-Bastion-SG	Mgmt-VPC	SSH (22): My IP (Your Public IP)	#Only allows you to enter.
+-> Prod-ALB-SG	Prod-VPC	HTTP (80): 0.0.0.0/0 (Anywhere)
 
 
-HTTPS (443): 0.0.0.0/0	For Public Load Balancer.
-Prod-App-SG	Prod-VPC	HTTP (80): From Prod-ALB-SG
+-> HTTPS (443): 0.0.0.0/0	For Public Load Balancer.
+-> Prod-App-SG	Prod-VPC	HTTP (80): From Prod-ALB-SG
 
 
-SSH (22): From 10.0.0.0/16 (Mgmt CIDR)
-HTTP (80): From 10.0.0.0/16
-ICMP: From 10.0.0.0/16	Allows ALB traffic & Bastion access.
-Prod-DB-SG	Prod-VPC	PostgreSQL (5432): From Prod-App-SG
+-> SSH (22): From 10.0.0.0/16 (Mgmt CIDR)
+-> HTTP (80): From 10.0.0.0/16
+-> ICMP: From 10.0.0.0/16	Allows ALB traffic & Bastion access.
+-> Prod-DB-SG	Prod-VPC	PostgreSQL (5432): From Prod-App-SG
 
 
-PostgreSQL (5432): From 10.0.0.0/16	Allows App & Admin access.
-Prod-EFS-SG	Prod-VPC	NFS (2049): From Prod-App-SG	Allows Storage Access.
+-> PostgreSQL (5432): From 10.0.0.0/16	Allows App & Admin access.
+-> Prod-EFS-SG	Prod-VPC	NFS (2049): From Prod-App-SG	Allows Storage Access.
 ________________________________________
 Phase 6: Database & Storage Layer 💾
 6.1 RDS PostgreSQL Setup
