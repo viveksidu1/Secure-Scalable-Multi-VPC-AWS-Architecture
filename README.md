@@ -3,11 +3,16 @@ ________________________________________
 Introduction & Architecture Overview
 This document serves as a comprehensive step-by-step guide to deploying a production-grade AWS infrastructure. The project bridges a secure Management Network (for admins) with a Production Network (for applications) using advanced security protocols.
 Key Technologies Used:
-•	Networking: VPC, Transit Gateway, NAT Gateway, Subnets.
-•	Compute: EC2, Auto Scaling Groups (ASG), Launch Templates.
-•	Security: IAM Roles, Security Groups, S3 Object Lock, SSH Agent Forwarding.
-•	Database & Storage: RDS (PostgreSQL), EFS (Shared File System).
-•	Load Balancing: Application Load Balancer (ALB).
+
+•	Networking:- VPC, Transit Gateway, NAT Gateway, Subnets.
+
+•	Compute:- EC2, Auto Scaling Groups (ASG), Launch Templates.
+
+•	Security:- IAM Roles, Security Groups, S3 Object Lock, SSH Agent Forwarding.
+
+•	Database & Storage:- RDS (PostgreSQL), EFS (Shared File System).
+
+•	Load Balancing:- Application Load Balancer (ALB).
 
 ## 🏗️ Architecture Diagram
 Click the diagram below to watch the DEMO VIDEO.....
